@@ -1,0 +1,335 @@
+@import mixin
+
+$colors: ('danger': #e84c3d, 'warning': #fdbd1f, 'sucsess': #1bbc9b, 'default': transparent, 'info': #245963, 'primary': #9b58b5)
+		
+@each $colorName, $colorHex in $colors
+	.btn-#{$colorName}
+		+btn($colorHex)
+	.col-#{$colorName}
+		+col($colorHex)
+	.box-#{$colorName}
+		+box($colorHex)
+
+
+$borderColors: ('default': #fff, 'info': #387d89)
+
+@each $colorName, $borderColor in $borderColors
+	.link-btn-#{$colorName}
+		+link-btn($borderColor)
+
+
+$icons: 'message', 'pencil', 'crown', 'user', 'mail'
+
+@for $i from 0 to length($icons)
+	.icon-#{nth($icons, $i+1)}
+		@extend %icon
+		&::after
+			background-position-y: -(59px * $i)
+
+body
+	font-size: 16px
+	color: #fff 
+	background: #29606b
+	font-family: 'Source Sans Pro', sans-serif
+	margin: 0
+
+.container
+	width: 100%
+	max-width: 1170px
+	margin: 0 auto
+	text-align: center
+
+.bg-image
+	margin: 0 auto
+	background: url(../img-css/bg-promo.jpg) 
+	background-size: cover
+	font-family: $ffFjallaOne
+
+.header
+	@extend %clearfix
+	position: relative
+	color: #fff
+	background: #29606b
+	opacity: 0.5
+	border: 
+		style: solid
+		width: 1px
+		color: #2a6c78
+	border-top: none
+	+desktop
+		padding: 30px 0 20px
+
+.header.sticky
+	position: fixed
+	top: 0
+	left: 0
+	width: 100%
+	z-index: 20
+	opacity: 1
+
+.logo
+	@extend %link
+	float: left
+	font-size: 25px
+	padding: 10px
+	+desktop
+		padding: 0 0 0 30px
+
+.menu-toggle 
+	float: right
+	padding: 10px 20px
+	display: block
+	color: #fff
+	font-size: 24px
+	&:hover + .menu 
+		display: block
+	&:hover .header
+		opacity: 1
+	+desktop
+		display: none
+
+.menu
+	@extend %clearfix
+	display: none
+	position: absolute
+	top: 99%
+	width: 100%
+	right: 0
+	background: #29606b
+	&:hover
+		display: block
+	a
+		display: block
+		@extend %link
+		font-size: 17px
+		padding: 3px 20px
+		&:hover
+			-webkit-box-shadow: 0px 3px 0px 0px rgba(250, 250, 250, 0.75)
+			-moz-box-shadow:    0px 3px 0px 0px rgba(250, 250, 250, 0.75)
+			box-shadow:         0px 3px 0px 0px rgba(250, 250, 250, 0.75)
+	+desktop
+		float: right 
+		position: static
+		display: block
+		width: auto
+		a
+			float: left
+		
+
+.promo
+	text-transform: uppercase
+	padding: 20px 10px 100px
+	font-family: $ffFjallaOne
+	+desktop
+		padding: 111px 0 211px  
+	h1
+		font-size: 25px
+		font-weight: normal
+		+desktop
+			font-size: 41px
+	p
+		font-size: 17px
+		line-height: 9px
+		margin-bottom: 36px
+		+desktop
+			font-size: 31px
+.row
+	display: flex
+	flex-wrap: wrap
+	justify-content: space-between
+	margin: -80px 0 75px
+
+.intermedium
+	margin-bottom: 4.2%
+
+.avatar
+	+circle
+	+size(182px)
+	margin-bottom: 12px
+
+.boxes 
+	display: flex
+	flex-wrap: wrap
+	justify-content: space-between
+	margin-top: 4.8%
+	
+
+[class^='box-'] 
+	p 
+		line-height: 25px
+
+h2
+	font-family: $ffFjallaOne
+	font-size: 20px
+	font-weight: normal
+	margin: 20px 0 0
+	text-transform: uppercase
+	+desktop
+		font-size: 29px
+
+.title-text
+	@extend %textP
+	display: inline-block
+	position: relative
+	+tablet
+		&::before
+			content: ""
+			position: absolute
+			top: 54%
+			left: -36%
+			height: 0
+			width: calc(100% - 70%)
+			border-bottom:
+				style: solid
+				width: 1px
+				color: $borderColorInfo
+		&::after
+			content: ""
+			position: absolute
+			top: 54%
+			right: -36%
+			height: 0
+			width: calc(100% - 70%)
+			border-bottom:
+				style: solid
+				width: 1px
+				color: $borderColorInfo
+
+.form-block
+	@extend %clearfix
+	max-width: 570px
+	width: 100%
+	margin: 0 auto
+	margin-top: 2.3%
+
+.form-block input
+	width: 270px
+	padding: 0 5px
+	line-height: 44px
+	color: inherit
+	box-sizing: border-box
+	background: $colorInfo
+	margin-bottom: 5.3%
+	border:
+		style: solid
+		width: 1px
+		color: $borderColorInfo
+	+tablet
+		float: left
+		&:first-child 
+			margin-right: 5%
+
+.form-block textarea 
+	width: 95%
+	padding: 0 5px
+	line-height: 31px
+	color: inherit
+	box-sizing: border-box
+	background: $colorInfo
+	margin-bottom: 4.5%
+	border:
+		style: solid
+		width: 1px
+		color: $borderColorInfo
+	+tablet
+		width: 100%
+	+desktop
+		width: 100%
+
+.btn-lg
+	border-width: 2px
+	&::before
+		border-width: 2px
+		width: 58px
+		left: 0
+	&::after
+		border-width: 2px
+		width: 57px
+		right: 0
+	span
+		&::before
+			border-width: 2px
+			width: 18px
+			left: 58px
+		&::after
+			border-width: 2px
+			width: 18px
+			right: 57px
+		a 
+			padding: 12px 37px
+
+.btn-sm
+	&::before
+		width: 38px
+		left: 0
+	&::after
+		width: 41px
+		right: 0
+	span
+		&::before
+			width: 15px
+			left: 38px
+		&::after
+			width: 16px
+			right: 41px
+		button 
+			padding: 8px 28px
+			border: none
+
+.social-block
+	@extend %clearfix
+	display: inline-block
+	padding-bottom: 30px
+	position: relative
+	margin-bottom: 13px
+	&::after
+		content: ""
+		display: block
+		position: absolute
+		bottom: 0
+		left: 64px
+		width: calc(100% - 31%)
+		border-bottom:
+			style: solid
+			width: 1px 
+			color: $borderColorInfo
+	span
+		padding: 6px 10px
+		+tablet
+			float: left
+
+
+
+.social-icon
+	position: relative
+	+circle
+	+size (36px)
+	float: left
+	background: #fff 
+	position: relative
+	margin: 0 10px
+	.fa
+		content: ""
+		display: block
+		position: absolute
+		top: 10px
+		left: 13px
+		font-size: 15px
+		color: $colorInfo
+
+footer
+	background: $colorInfo
+	padding: 42px 0
+	margin-top: 6.5%
+	a 
+		color: inherit
+		text-decoration: none
+		cursor: pointer
+
+.color-text
+	color: #fdbd1f
+
+
+
+	
+

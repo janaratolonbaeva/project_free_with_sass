@@ -1,0 +1,170 @@
+$ffFjallaOne: 'Fjalla One', sans-serif
+$tablet-up: '(min-width: 700px)'
+$desktop-up: '(min-width: 900px)'
+$colorInfo: #245963 
+$borderColorInfo: #387d89
+
+
+=tablet
+	@media #{$tablet-up}
+		@content
+	
+
+=desktop
+	@media #{$desktop-up}
+		@content	
+
+%btn 
+	color: #fff
+	display: inline-block
+	position: relative
+	padding: 10px 20px
+	font:
+		size: 15px
+		family: $ffFjallaOne
+		weight: normal
+	text:
+		transform: uppercase
+		decoration: none
+		align: center
+
+=btn($bgcolor)
+	@extend %btn
+	background: ($bgcolor)
+	+triangle($bgcolor)
+
+%triangle
+	content: ""
+	position: absolute
+	bottom: -10px
+	left: 38%
+	width: 0
+	height: 0
+	border:
+		style: solid
+		width: 10px 10px 0 10px
+
+=triangle($color)
+	&::after
+		@extend %triangle
+		border-color: $color transparent transparent transparent
+
+%clearfix
+	&::after
+		content: ''
+		display: table
+		width: 100%
+		clear: both
+
+%link
+	line-height: auto
+	text-decoration: none
+	cursor: pointer
+	color: inherit
+
+%border
+	content: ""
+	position: absolute
+	border-bottom: 
+		width: 1px 
+		style: solid
+	height: 0
+	bottom: 0
+	z-index: 3
+	
+=link-btn ($borderColor)
+	position: relative
+	display: inline-block
+	border: 
+		width: 1px 
+		style: solid
+		color: $borderColor
+	border-bottom: none
+	&::before
+		@extend %border
+		border-color: $borderColor 
+	&::after
+		@extend %border
+		border-color: $borderColor 
+	span
+		display: block
+		position: relative
+		&::before
+			@extend %border
+			transform-origin: top left
+			transform: rotate(46deg)
+			border-color: $borderColor 
+		&::after
+			@extend %border
+			transform-origin: top right
+			transform: rotate(-45deg)
+			border-color: $borderColor 
+
+%textP
+	font-family: $ffFjallaOne
+	text-transform: uppercase
+	font-size: 21px
+	margin: 9px
+
+%col 
+	box-sizing: border-box
+	padding: 10px
+	flex: 0 0 100%
+	+desktop
+		flex: 0 0 50%
+		padding: 58px 80px 44px
+	p 
+		margin: 8px
+
+=col ($colors)
+	background: $colors
+
+[class^='col-']
+	@extend %col
+
+=circle
+	border-radius: 50%
+	display: inline-block
+	z-index: 2
+
+=size ($size)
+	width: $size
+	height: $size
+
+%icon
+	position: relative
+	+circle
+	+size (100px)
+	background: #fff 
+	&::after
+		content: ''
+		position: absolute
+		top: 22px
+		left: 22px
+		+size(55px)
+		background: url(../img-css/sprite-icons.svg) no-repeat
+
+=box ($color) 
+	flex: 0 0 100%
+	box-sizing: border-box
+	padding: 0 10px
+	border-top:
+		style: solid
+		width: 7px
+		color: $color
+	background: $colorInfo
+	padding: 15px 10px
+	div
+		margin-bottom: 10px
+	+desktop
+		flex: 0 0 31.5%
+		padding: 43px 30px 62px
+		div
+			margin-bottom: 32px
+	
+
+
+
+
+
+
