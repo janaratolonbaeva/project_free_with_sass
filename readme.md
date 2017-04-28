@@ -1,3 +1,3 @@
 sass --watch sass:css --no-cache --sourcemap=none --style compact
 
- https://janaratolonbaeva.github.io/html-group_8-homework_42-janara/
+https://janaratolonbaeva.github.io/project_free_with_sass/index.html
